@@ -1,0 +1,16 @@
+
+
+public class Solution {
+	public ListNode deleteDuplicates(ListNode a) {
+	    ListNode pointer = a;
+	    while (pointer.next != null) {    
+	        if (pointer.val == pointer.next.val) {
+	            pointer.next = pointer.next.next;   //Changes the next pointer to the next node;
+	        }
+	        else {
+	            pointer = pointer.next;             //Move from node to node 
+	        }
+	    }
+	    return a;
+	}
+}

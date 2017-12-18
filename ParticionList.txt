@@ -1,0 +1,29 @@
+Partition list 
+
+Explenation: You make two list one with the smaller nodes and other with the equal o greater than b and the you merge both lists.
+
+public class Solution {
+	public ListNode partition(ListNode a, int b) {
+	    ListNode greater = new ListNode(-1);         //Generated the head of the greater list 
+	    ListNode lower = new ListNode(-1);           //Generated the head of the lower list 
+	    ListNode low=lower;
+	    ListNode great=greater;
+    	    
+	    while(a != null){
+    	    	ListNode next=a.next;                   //Make lower nodes together
+    	        a.next=null;
+    	        if(a.val<b){
+    	            low.next=a;
+    	            low=low.next;
+    	        }else{
+    	            great.next=a;
+    	            great=great.next;
+    	       }
+    	       a=next;
+	   }
+	   if(low!=lower)
+	   	low.next=greater.next;                 //Merge the two lists in a single one 
+	    
+	   return (lower.next==null)?greater.next:lower.next; //Return the complet list or just the greater list 
+	}
+}

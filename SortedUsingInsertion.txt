@@ -1,0 +1,42 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+	public ListNode insertionSortList(ListNode a) {
+	    if(a==null)return null;
+	    ListNode listHead=a;                           //points to the head of the list 
+	    ListNode index=a.next;                        // Points to the the next element to be sorted 
+	    ListNode pointedTo=a;                                  // Pointer to the last element sorted 
+	    
+	    while(index!=null){
+	        
+	        ListNode current=listHead;                 //Is the pointer to check the value of the nodes 
+	        ListNode prev=null;                        // Stores the previous element to make the conneccion with the index node
+	        
+	        while(current!=null&&index.val>current.val){
+	            prev=current;
+	            current=current.next;
+	        }
+	        
+	        if(current!=index){                          //if value of index is unsorted
+	            
+	            if(prev!=null){                         //if the value of index is not the newhead  
+	                prev.next=index;                  
+	            }else{ listHead=index;}                 //else the value of index is the head 
+	            ListNode next= index.next;        
+	            index.next=current;                     //Change the pointers of the list 
+	            pointedTo.next=next;        
+  		    index=next;
+	        }else{ 
+	            pointedTo=index;                        //else, the index value is already in order. 
+	            index=index.next;
+	        }
+	    }
+	    return listHead;
+	}
+}
